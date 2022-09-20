@@ -1,0 +1,52 @@
+info:
+  version: 0.0.1
+spring:
+  application.name: blogSearchApi
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database: h2
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        show_sql: true
+        format_sql: true
+        use_sql_comments: false
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    favicon:
+      enabled: false
+  task:
+    thread:
+      pool:
+        properties:
+          corePoolSize: 5
+          maxPoolSize: 25
+          queueCapacitySize: 150
+logging:
+  level:
+    root: debug
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 3000
+        loggerLevel: FULL
+external-api:
+  kakao:
+    url: https://dapi.kakao.com
+    api-key: 2cb2ce0285b5d54ed5957c98f4c7fb8a
+  naver:
+    url: https://openapi.naver.com
+    client-id: nMRiS1fHgnrZHGE5lJrb
+    client-secret: BomrRwX3Kh
+
