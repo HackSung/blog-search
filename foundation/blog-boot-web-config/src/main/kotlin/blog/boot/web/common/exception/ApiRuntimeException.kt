@@ -1,7 +1,6 @@
 package blog.boot.web.common.exception
 
 import blog.boot.web.common.status.ApiResponseCode
-import java.text.MessageFormat
 
 class ApiRuntimeException : RuntimeException {
     var errorCode: ApiResponseCode? = null

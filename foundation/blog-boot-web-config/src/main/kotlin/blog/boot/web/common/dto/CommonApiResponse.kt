@@ -120,13 +120,5 @@ class CommonApiResponse {
             return ResponseEntity.status(errorCode.httpStatus).body(result)
         }
 
-        fun makeErrorResultWithoutHttpStatusCode(errorCode: ApiResponseCode): ResponseEntity<Any> {
-            val result = CommonApiResponse()
-            result.code = errorCode.code
-            result.message = errorCode.dispMessage
-            result.currentTimestamp = Date()
-            log.info("Response : [{}, {}]", result.code, result.message)
-            return ResponseEntity.status(errorCode.httpStatus).body(result)
-        }
     }
 }

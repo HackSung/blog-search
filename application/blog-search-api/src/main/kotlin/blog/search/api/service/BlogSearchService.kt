@@ -11,8 +11,6 @@ import blog.search.api.controller.dto.SearchTermCount
 import blog.search.api.controller.dto.SearchTermCountResponse
 import blog.search.api.event.BlogSearchedEvent
 import feign.FeignException
-import feign.Request
-import feign.RequestTemplate
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
