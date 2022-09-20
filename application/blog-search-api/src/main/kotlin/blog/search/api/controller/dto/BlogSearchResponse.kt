@@ -19,7 +19,7 @@ data class BlogSearchResponse (
                 documents = kakao.documents.map(this::toDocument).toList(),
                 pagination = Pagination(
                     totalPage = kakao.meta.pageable_count,
-                    isEnd = kakao.meta.is_end,
+                    isEndPage = kakao.meta.is_end,
                     page = request.page,
                     size = request.size,
                 )
@@ -31,7 +31,7 @@ data class BlogSearchResponse (
                 documents = naver.items.map(this::toDocument).toList(),
                 pagination = Pagination(
                     totalPage = naver.total,
-                    isEnd = naver.total <= naver.start + naver.display - 1,
+                    isEndPage = naver.total <= naver.start + naver.display - 1,
                     page = request.page,
                     size = request.size
                 )

@@ -8,7 +8,7 @@ data class Pagination(
     var totalPage: Int,               // 총 페이지 번호
     var page: Int,                    // 현재 페이지 번호
     var size: Int,                    // 목록 사이즈
-    var isEnd: Boolean,               // 마지막 페이지 여부
+    var isEndPage: Boolean,           // 마지막 페이지 여부
     var start: Int = 0,               // 시작 페이지 번호
     var end: Int = 0,                 // 끝 페이지 번호
     var hasPrevLink: Boolean = false, // 이전 링크 존재여부

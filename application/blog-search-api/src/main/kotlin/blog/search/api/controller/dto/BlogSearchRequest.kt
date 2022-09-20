@@ -21,7 +21,7 @@ data class BlogSearchRequest(
     @field:Min(1) @field:Max(50)
     var size: Int = 50,
 
-    var sort: BlogSortType = BlogSortType.ACCURACY
+    var sort: BlogSortType = BlogSortType.accuracy
 ) {
     fun toKakaoRequest(): KakaoBlogSearchRequest {
         return KakaoBlogSearchRequest(
