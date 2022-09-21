@@ -21,9 +21,6 @@ spring:
         use_sql_comments: false
   main:
     allow-bean-definition-overriding: true
-  mvc:
-    favicon:
-      enabled: false
   task:
     thread:
       pool:
