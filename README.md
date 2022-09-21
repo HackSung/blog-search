@@ -130,7 +130,7 @@ https://drive.google.com/file/d/1cl0SOXZK88gCXchMb8pCoy8irGgNp74K/view?usp=shari
     ```
     blog-search
     ├──application
-    │   └──blog-search-api        * 블로그 검색 API (단위 테스트케이스 포함)
+    │   └──blog-search-api        * 블로그 검색 API (통합, 단위 테스트케이스 포함)
     ├──datastore                                                        
     │   └──blog-data-jpa          * JPA Config/Entity/Repository
     ├──foundation
