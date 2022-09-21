@@ -7,7 +7,7 @@ import blog.boot.web.common.dto.CommonApiResponse.Companion.makeErrorResult
 import blog.boot.web.common.dto.CommonApiResponse.Companion.makeSuccessResult
 import blog.boot.web.common.status.ApiResponseCode
 import blog.search.api.controller.dto.BlogSearchRequest
-import blog.search.api.service.BlogSearchService
+import blog.search.api.service.BlogSearchServiceImple
 import feign.FeignException
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping(value = [APIConstant.BLOG_SEARCH])
 @Slf4j
 class BlogSearchController(
-    val blogSearchService: BlogSearchService
+    val blogSearchService: BlogSearchServiceImple
 ) {
     @GetMapping
     fun searchBlog(@Validated request: BlogSearchRequest): ResponseEntity<Any> {

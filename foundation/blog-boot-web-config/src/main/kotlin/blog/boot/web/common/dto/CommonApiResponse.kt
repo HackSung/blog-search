@@ -5,11 +5,8 @@ import blog.boot.support.annotation.Slf4j.Companion.log
 import blog.boot.web.common.status.ApiResponseCode
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonInclude
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseCookie
 import org.springframework.http.ResponseEntity
-import org.springframework.util.LinkedMultiValueMap
 import java.util.*
 
 @Slf4j
@@ -28,38 +25,6 @@ class CommonApiResponse {
 
     companion object {
 
-        fun makeSuccessResult(): ResponseEntity<Any> {
-            return makeSuccessResult(HttpStatus.OK)
-        }
-
-        private fun makeSuccessResult(httpStatus: HttpStatus): ResponseEntity<Any> {
-            val result = CommonApiResponse()
-            result.code = ApiResponseCode.SUCCESS.code
-            result.message = ApiResponseCode.SUCCESS.message
-            result.currentTimestamp = Date()
-            log.info("Response : [{}]", result.code)
-            return ResponseEntity.status(httpStatus).body(result)
-        }
-
-        fun createSuccessResponse(data: Any?): CommonApiResponse {
-            val response = CommonApiResponse()
-            response.code = ApiResponseCode.SUCCESS.code
-            response.message = ApiResponseCode.SUCCESS.message
-            response.currentTimestamp = Date()
-            response.data = data
-            log.info("Response : [{}] {}", response.code, data?.toString() ?: "null")
-            return response
-        }
-
-        fun createSuccessResponse(): CommonApiResponse {
-            val response = CommonApiResponse()
-            response.code = ApiResponseCode.SUCCESS.code
-            response.message = ApiResponseCode.SUCCESS.message
-            response.currentTimestamp = Date()
-            log.info("Response : [{}] ", response.code)
-            return response
-        }
-
         fun makeSuccessResult(data: Any?, httpStatus: HttpStatus = HttpStatus.OK): ResponseEntity<Any> {
             val result = CommonApiResponse()
             result.code = ApiResponseCode.SUCCESS.code
@@ -68,17 +33,6 @@ class CommonApiResponse {
             result.data = data
             log.info("Response : [{}] {}", result.code, data?.toString() ?: "null")
             return ResponseEntity.status(httpStatus).body(result)
-        }
-
-        fun makeSuccessResult(responseCookies: Map<String, ResponseCookie>): ResponseEntity<Any> {
-            val result = CommonApiResponse()
-            result.code = ApiResponseCode.SUCCESS.code
-            result.message = ApiResponseCode.SUCCESS.message
-            result.currentTimestamp = Date()
-            log.info("Response : [{}]", result.code)
-            val headerMap = LinkedMultiValueMap<String, String>()
-            responseCookies.forEach { (k, v) -> headerMap.add(HttpHeaders.SET_COOKIE, v.toString()) }
-            return ResponseEntity.ok().headers(HttpHeaders(headerMap)).body(result)
         }
 
         fun makeErrorResult(errorCode: ApiResponseCode): ResponseEntity<Any> {

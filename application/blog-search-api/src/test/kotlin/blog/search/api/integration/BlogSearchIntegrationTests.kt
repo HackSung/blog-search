@@ -8,6 +8,7 @@ import io.kotest.common.ExperimentalKotest
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.shouldNotBe
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.boot.test.context.SpringBootTest
@@ -31,7 +32,7 @@ class BlogSearchIntegrationTests(
                 it("블로그 검색 결과를 반환해야 한다") {
                     // when
                     val result = webTestClient.get()
-                        .uri("/v1/blog/search?query={0}&page={1}&size={2}&sort={3}", "BTS", 1, 10, "ACCURACY")
+                        .uri("/v1/blog/search?query={0}&page={1}&size={2}&sort={3}", "BTS", 1, 10, "accuracy")
                         .exchange()
                         .expectStatus().isOk
                         .returnResult<String>()
@@ -55,6 +56,7 @@ class BlogSearchIntegrationTests(
                     webTestClient.get()
                         .uri("/v1/blog/search?query={0}", "KAKAO")
                         .exchange()
+                    Thread.sleep(1000L)
                 }
                 it("검색어 별로 검색 횟수를 반환해야 한다") {
                     // when
@@ -70,9 +72,9 @@ class BlogSearchIntegrationTests(
 
                     // then
                     println(body)
+
                     val commonResponse = mapper.readValue(body, CommonApiResponse::class.java)
                     val top10Terms = (commonResponse.data as LinkedHashMap<*, *>)["terms"] as List<SearchTermCount>
-                    print(top10Terms.size)
                     top10Terms.size shouldNotBe 0
                 }
             }

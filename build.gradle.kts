@@ -47,6 +47,13 @@ subprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+    extra["springCloudVersion"] = "2021.0.4"
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        }
+    }
 }
 
 project(":application:blog-search-api") {
@@ -56,6 +63,7 @@ project(":application:blog-search-api") {
         implementation(project(":datastore:blog-data-jpa"))
         implementation(project(":shared:blog-common-module"))
 
+        implementation("org.springframework.boot:spring-boot-starter-cache")
         implementation("org.springframework.boot:spring-boot-starter-webflux")
         implementation("org.yaml:snakeyaml:1.29")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2")
@@ -77,8 +85,8 @@ project(":application:blog-search-api") {
         testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
 
         // mockk
-        testImplementation("io.mockk:mockk:1.9.3")
-        testImplementation("com.ninja-squad:springmockk:3.0.0")
+        testImplementation("io.mockk:mockk:1.12.8")
+        testImplementation("com.ninja-squad:springmockk:3.1.1")
     }
 }
 
@@ -117,7 +125,7 @@ project(":shared:blog-common-module") {
         implementation(project(":foundation:blog-boot-web-config"))
         implementation(project(":datastore:blog-data-jpa"))
 
-        api("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4")
+        api("org.springframework.cloud:spring-cloud-starter-openfeign")
     }
 }
 

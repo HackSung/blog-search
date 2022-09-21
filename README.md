@@ -12,14 +12,16 @@
     기본은 카카오 블로그 검색 API를 호출하며 카카오 장애 발생 시 네이버 블로그 검색 API를 호출하여 정보를 가져옵니다.
     
     **Request Parameters**
-    | Name | Type | Description | Required |
-    |-----|----------|---------|-----|
+
+    | Name | Type    | Description | Required |
+    |------|---------|---------|:---:|
     | query | String | 검색을 원하는 질의어  | O |
     | page | Integer | 결과 페이지 번호, 1~50 사이의 값, 기본 값 1 | X |
     | size | Integer | 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10 | X |
-    | sort | String | 결과 문서 정렬 방식, accuracy(정확도순) 또는 latest(최신순), 기본 값 accuracy | X |
+    | sort | String  | 결과 문서 정렬 방식, accuracy(정확도순) 또는 latest(최신순), 기본 값 accuracy | X |
     
     **Respnse Fields**
+ 
     | Name | Type | Description |
     |-----|----------|---------|
     | code | String | API 응답 코드, 정상 BL200 |
@@ -29,6 +31,7 @@
     | currentTimestamp | Number | 현재 시간 |
     
     **Documents**
+
     | Name | Type | Description |
     |-----|----------|---------|
     | title | String | 블로그 글 제목 |
@@ -38,6 +41,7 @@
     | postDate | Date | 블로그 글 작성일자, YYYY-MM-DD |
     
     **Pagination**
+
     | Name | Type | Description |
     |-----|----------|---------|
     | totalPage | Integer | 총 페이지 번호 |
@@ -86,6 +90,7 @@
     사용자들이 많이 검색한 순서대로, 최대 10개의 검색 키워드와 검색 횟수를 제공합니다.    
     
     **Respnse Fields**
+ 
     | Name | Type | Description |
     |-----|----------|---------|
     | code | String | API 응답 코드, 정상 BL200 |
@@ -94,6 +99,7 @@
     | currentTimestamp | Number | 현재 시간 |
     
     **Terms**
+
     | Name | Type | Description |
     |-----|----------|---------|
     | term | String | 검색 키워드 |
@@ -136,8 +142,8 @@
     └──settings.gradle.kts        * multi module 설정
     ```
 - **대량 트래픽 문제 대비**
-    * 블로그 검색시 검색어 별 검색횟수 업데이트 작업을 비동기 이벤트로 처리하였습니다.   
-    * 인기 검색어 목록을 캐싱처리하고 스케쥴링으로 3분마다 캐시를 갱신하도록 하였습니다.
+    * 블로그 검색시 검색어 별 검색횟수 업데이트 작업을 비동기 이벤트로 처리 하였습니다.   
+    * 인기 검색어 목록을 캐싱처리하였고 검색어 횟수가 변경되면 갱신처리 하였습니다.
 - **동시성 이슈 문제 대비**
     * 키워드별 검색횟수 업데이트를 위한 조회시 PESSIMISTIC_WRITE옵션으로 선점 잠금 방식을 적용하였으며   
       교착상태 발생 가능성을 낮추기 위해 최대 대기시간 힌트를 사용하였습니다.
