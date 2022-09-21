@@ -1,6 +1,7 @@
 <h1 align="left">오픈 API를 이용한 블로그 검색 서비스</a></h1>
 
-## Executable jar 다운로드 
+## Executable jar 다운로드주소 
+https://drive.google.com/file/d/1cl0SOXZK88gCXchMb8pCoy8irGgNp74K/view?usp=sharing
 
 ## API 명세
 
@@ -129,7 +130,7 @@
     ```
     blog-search
     ├──application
-    │   └──blog-search-api        * 블로그 검색 API
+    │   └──blog-search-api        * 블로그 검색 API (단위 테스트케이스 포함)
     ├──datastore                                                        
     │   └──blog-data-jpa          * JPA Config/Entity/Repository
     ├──foundation
@@ -138,7 +139,7 @@
     ├──shared
     │   ├──blog-common-domain     * 공통 도메인 코드
     │   └──bolg-common-module     * OpenFeign API
-    ├──build.gradle.kts           * gradle Kotlin DSL(모듈간 의존성 제약)
+    ├──build.gradle.kts           * gradle Kotlin DSL
     └──settings.gradle.kts        * multi module 설정
     ```
 - **대량 트래픽 문제 대비**
@@ -148,10 +149,10 @@
     * 키워드별 검색횟수 업데이트를 위한 조회시 PESSIMISTIC_WRITE옵션으로 선점 잠금 방식을 적용하였으며   
       교착상태 발생 가능성을 낮추기 위해 최대 대기시간 힌트를 사용하였습니다.
 - **카카오 블로그 검색 API 장애 대비**
-    * 카카오 API 장애에 대한 Exception처리를 구현하여 네이버 블로그 검색 API를 호출하도록 하였습니다.
+    * 카카오 API 장애에 대한 Exception처리를 구현하여 장애발생 시 네이버 블로그 검색 API를 호출하여 정보를 가져오게 하였습니다.
   
 ## 개발 프레임워크 및 사용 라이브러리
 + Spring Boot & Kotlin & Gradle
 + Spring Data JPA & H2 DB
-+ OpenFeign : 쉽고 빠른 오픈 API 호출을 위한 Http Client 라이브러리
-+ Kotest & Mockk : 코틀린 DSL을 활용한 단위테스트 
++ OpenFeign : 오픈 API 호출을 쉽고 빠르게 구현할 수 있는 Http Client 라이브러리
++ Kotest & Mockk : 코틀린 DSL을 활용한 단위테스트 적용
