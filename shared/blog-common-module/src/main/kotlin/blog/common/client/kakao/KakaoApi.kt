@@ -1,6 +1,6 @@
 package blog.common.client.kakao
 
-import blog.common.client.kakao.decoder.NaverErrorDecoder
+import blog.common.client.kakao.decoder.KakaoErrorDecoder
 import blog.common.client.kakao.dto.KakaoBlogSearchRequest
 import blog.common.client.kakao.dto.KakaoBlogSearchResponse
 import feign.RequestInterceptor
@@ -29,7 +29,7 @@ interface KakaoApi {
 
         @Bean
         fun errorDecoder(): ErrorDecoder {
-            return NaverErrorDecoder()
+            return KakaoErrorDecoder()
         }
     }
 }
